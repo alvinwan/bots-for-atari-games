@@ -4,23 +4,27 @@ Step 1 -- Make a random, baseline agent for the SpaceInvaders game.
 
 import gym
 import random
+random.seed(0)  # make results reproducible
+
+num_episodes = 10
 
 
 def main():
-    env = gym.make('SpaceInvaders-v0')
-    num_episodes = 5
-    num_actions = env.action_space.n
+    env = gym.make('SpaceInvaders-v0')  # create the game
+    env.seed(0)  # make results reproducible
+    rewards = []
 
-    for episode in range(num_episodes):
+    for _ in range(num_episodes):
         env.reset()
-        total_reward = 0
+        episode_reward = 0
         while True:
-            action = random.randint(0, num_actions-1)
-            _, reward, done, _ = env.step(action)
-            total_reward += reward
+            _, reward, done, _ = env.step(env.action_space.sample())  # random action
+            episode_reward += reward
             if done:
-                print('Episode %d reward: %d' % (episode, total_reward))
+                print('Reward: %d' % episode_reward)
+                rewards.append(episode_reward)
                 break
+    print('Average reward: %.2f' % (sum(rewards) / len(rewards)))
 
 
 if __name__ == '__main__':
