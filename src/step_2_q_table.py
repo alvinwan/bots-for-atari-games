@@ -13,6 +13,7 @@ discount_factor = 0.85
 learning_rate = 0.9
 report_interval = 500
 
+
 def main():
     env = gym.make('FrozenLake-v0')  # create the game
     env.seed(0)  # make results reproducible
