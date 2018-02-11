@@ -15,11 +15,19 @@ discount_factor = 0.99
 learning_rate = 0.15
 report_interval = 500
 exploration_probability = lambda episode: 50. / (episode + 10)
-report = '100-episode Average reward: %.2f . Average reward: %.2f (Episode %d)'
+report = '100-ep Average: %.2f . Best 100-ep Average: %.2f . Average: %.2f (Episode %d)'
 
 
 def one_hot(i, n):
     return np.identity(n)[i: i+1]
+
+
+def print_report(rewards, episode):
+    print(report % (
+        np.mean(rewards[-100:]),
+        max([np.mean(rewards[i:i+100]) for i in range(len(rewards) - 100)]),
+        np.mean(rewards),
+        episode))
 
 
 def main():
@@ -81,10 +89,9 @@ def main():
                 if done:
                     rewards.append(episode_reward)
                     if episode % report_interval == 0:
-                        print(report % (
-                            np.mean(rewards[-100:]), np.mean(rewards), episode))
+                        print_report(rewards, episode)
                     break
-        print(report % (np.mean(rewards[-100:]), np.mean(rewards), -1))
+        print_report(rewards, -1)
 
 if __name__ == '__main__':
     main()

@@ -8,11 +8,11 @@ import random
 random.seed(0)  # make results reproducible
 np.random.seed(0)  # make results reproducible
 
-num_episodes = 15000
+num_episodes = 20000
 discount_factor = 0.85
 learning_rate = 0.9
 report_interval = 500
-report = '100-episode Average reward: %.2f . Average reward: %.2f . Best: %.2f (Episode %d)'
+report = '100-ep Average: %.2f . Best 100-ep Average: %.2f . Average: %.2f (Episode %d)'
 
 
 def train(X, y, old_model=None, alpha=0.5):
@@ -32,6 +32,14 @@ def Q(model, X):
 
 def one_hot(i, n):
     return np.identity(n)[i]
+
+
+def print_report(rewards, episode):
+    print(report % (
+        np.mean(rewards[-100:]),
+        max([np.mean(rewards[i:i+100]) for i in range(len(rewards) - 100)]),
+        np.mean(rewards),
+        episode))
 
 
 def main():
@@ -68,10 +76,9 @@ def main():
             if done:
                 rewards.append(episode_reward)
                 if episode % report_interval == 0:
-                    print(report % (
-                          np.mean(rewards[-100:]), np.mean(rewards), max(np.mean(rewards[i:i+100]) for i in range(len(rewards) - 100)), episode))
+                    print_report(rewards, episode)
                 break
-    print(report % (np.mean(rewards[-100:]), np.mean(rewards), -1))
+    print_report(rewards, -1)
 
 if __name__ == '__main__':
     main()
