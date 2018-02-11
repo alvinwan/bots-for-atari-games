@@ -12,6 +12,7 @@ num_episodes = 5000
 discount_factor = 0.85
 learning_rate = 0.9
 report_interval = 500
+report = '100-episode Average reward: %.2f . Average reward: %.2f (Episode %d)'
 
 
 def main():
@@ -34,9 +35,10 @@ def main():
             if done:
                 rewards.append(episode_reward)
                 if episode % report_interval == 0:
-                    print('Average Reward %.2f (Episode %d)' % (np.mean(rewards), episode))
+                    print(report % (
+                          np.mean(rewards[-100:]), np.mean(rewards), episode))
                 break
-    print('Average reward: %.2f' % (sum(rewards) / len(rewards)))
+    print(report % (np.mean(rewards[-100:]), np.mean(rewards), -1))
 
 if __name__ == '__main__':
     main()

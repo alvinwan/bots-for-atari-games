@@ -10,11 +10,12 @@ random.seed(0)
 np.random.seed(0)
 tf.set_random_seed(0)
 
-num_episodes = 2500
+num_episodes = 20000
 discount_factor = 0.99
-learning_rate = 0.1
+learning_rate = 0.15
 report_interval = 500
 exploration_probability = lambda episode: 50. / (episode + 10)
+report = '100-episode Average reward: %.2f . Average reward: %.2f (Episode %d)'
 
 
 def one_hot(i, n):
@@ -47,7 +48,7 @@ def main():
     pred_act_ph = tf.argmax(q_current, 1)
 
     # 3. Setup optimization
-    trainer = tf.train.GradientDescentOptimizer(learning_rate=0.1)
+    trainer = tf.train.GradientDescentOptimizer(learning_rate=learning_rate)
     update_model = trainer.minimize(error)
 
     with tf.Session() as session:
@@ -80,10 +81,10 @@ def main():
                 if done:
                     rewards.append(episode_reward)
                     if episode % report_interval == 0:
-                        print('Average Reward %.2f (Episode %d)' % (
-                            np.mean(rewards), episode))
+                        print(report % (
+                            np.mean(rewards[-100:]), np.mean(rewards), episode))
                     break
-        print('Average reward: %.2f' % np.mean(rewards))
+        print(report % (np.mean(rewards[-100:]), np.mean(rewards), -1))
 
 if __name__ == '__main__':
     main()
