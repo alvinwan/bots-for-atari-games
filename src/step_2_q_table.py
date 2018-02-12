@@ -2,6 +2,7 @@
 Step 2 -- Build simple q-learning agent for FrozenLake
 """
 
+from typing import List
 import gym
 import numpy as np
 import random
@@ -15,7 +16,12 @@ report_interval = 500
 report = '100-ep Average: %.2f . Best 100-ep Average: %.2f . Average: %.2f (Episode %d)'
 
 
-def print_report(rewards, episode):
+def print_report(rewards: List, episode: int):
+    """Print rewards report for current episode
+    - Average for last 100 episodes
+    - Best 100-episode average across all time
+    - Average for all episodes across time
+    """
     print(report % (
         np.mean(rewards[-100:]),
         max([np.mean(rewards[i:i+100]) for i in range(len(rewards) - 100)]),

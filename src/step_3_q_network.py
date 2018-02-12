@@ -2,6 +2,7 @@
 Step 3 -- Use Q-learning network to train bot
 """
 
+from typing import List
 import gym
 import numpy as np
 import random
@@ -15,14 +16,21 @@ discount_factor = 0.99
 learning_rate = 0.15
 report_interval = 500
 exploration_probability = lambda episode: 50. / (episode + 10)
-report = '100-ep Average: %.2f . Best 100-ep Average: %.2f . Average: %.2f (Episode %d)'
+report = '100-ep Average: %.2f . Best 100-ep Average: %.2f . Average: %.2f ' \
+         '(Episode %d)'
 
 
-def one_hot(i, n):
-    return np.identity(n)[i: i+1]
+def one_hot(i: int, n: int) -> np.array:
+    """Implements one-hot encoding by selecting the ith standard basis vector"""
+    return np.identity(n)[i]
 
 
-def print_report(rewards, episode):
+def print_report(rewards: List, episode: int):
+    """Print rewards report for current episode
+    - Average for last 100 episodes
+    - Best 100-episode average across all time
+    - Average for all episodes across time
+    """
     print(report % (
         np.mean(rewards[-100:]),
         max([np.mean(rewards[i:i+100]) for i in range(len(rewards) - 100)]),
