@@ -11,16 +11,29 @@ We additionally add bells and whistles for a fully pretrained Deep Q-learning Ne
 
 ## Getting Started
 
-If you're familiar with deep learning and would like to use these materials, feel free to follow installation instructions. Otherwise, I would highly recommend checking out the corresponding Digital Ocean article for step-by-step instructions and walkthroughs.
+If you're familiar with deep learning and would like to use these materials, feel free to follow installation instructions. Otherwise, I would highly recommend checking out the corresponding Digital Ocean article for step-by-step instructions and walkthroughs. 
 
-Install all pip dependencies.
-
-```
-pip install numpy tensorflow matplotlib gym gym[atari]
-```
-
-Run the corresponding file in `src/`.
+This codebase was developed and tested using `Python 3.5`. Install all pip dependencies.
 
 ```
-python src/step_4_ls.py
+pip install gym==0.9.5 gym[atari] tensorflow==1.5.0 tensorpack==0.8.0 numpy==1.14.0 opencv-python==3.3.0.10
+```
+
+Navigate to the `src` directory.
+
+```python
+cd src
+```
+
+Download the Tensorflow model for SpaceInvaders, from Tensorpack's A3C-Gym sample.
+
+```
+mkdir models
+wget http://models.tensorpack.com/OpenAIGym/SpaceInvaders-v0.tfmodel models
+```
+
+Run the corresponding file.
+
+```
+python step_5_dqn.py --visual
 ```

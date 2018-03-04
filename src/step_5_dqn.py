@@ -2,12 +2,13 @@
 Step 5 - Fully featured deep q-learning network.
 """
 
+import argparse
 import cv2
 import gym
 import numpy as np
 import random
 import tensorflow as tf
-from step_4_a3c import a3c_model
+from step_5_a3c import a3c_model
 random.seed(0)  # make results reproducible
 tf.set_random_seed(0)
 
@@ -19,11 +20,16 @@ def downsample(state):
 
 
 def main():
+    parser = argparse.ArgumentParser(description='Run DQN bot')
+    parser.add_argument('--model', type=str, help='Path to model', default='models/SpaceInvaders-v0.tfmodel')
+    parser.add_argument('--visual', action='store_true')
+    args = parser.parse_args()
+
     env = gym.make('SpaceInvaders-v0')  # create the game
     env.seed(0)  # make results reproducible
     rewards = []
 
-    model = a3c_model(load='models/SpaceInvaders-v0.tfmodel')
+    model = a3c_model(load=args.model)
     for _ in range(num_episodes):
         episode_reward = 0
         states = [downsample(env.reset())]
@@ -33,6 +39,8 @@ def main():
             else:
                 frames = np.concatenate(states[-4:], axis=3)
                 action = np.argmax(model([frames]))
+            if args.visual:
+                env.render()
             state, reward, done, _ = env.step(action)
             states.append(downsample(state))
             episode_reward += reward
