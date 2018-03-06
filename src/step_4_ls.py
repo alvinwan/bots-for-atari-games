@@ -78,7 +78,8 @@ def main():
             action = np.argmax(Q(state) + noise)
             state2, reward, done, _ = env.step(action)
 
-            Qtarget = reward + discount_factor * np.max(Q(one_hot(state2, n_obs)))
+            state2 = one_hot(state2, n_obs)
+            Qtarget = reward + discount_factor * np.max(Q(state2))
             label = Q(state)
             label[action] = (1 - learning_rate) * label[action] + learning_rate * Qtarget
             labels.append(label)
