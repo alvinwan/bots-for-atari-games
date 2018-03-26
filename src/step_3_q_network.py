@@ -22,7 +22,7 @@ report = '100-ep Average: %.2f . Best 100-ep Average: %.2f . Average: %.2f ' \
 
 def one_hot(i: int, n: int) -> np.array:
     """Implements one-hot encoding by selecting the ith standard basis vector"""
-    return np.identity(n)[i]
+    return np.identity(n)[i].reshape((1, -1))
 
 
 def print_report(rewards: List, episode: int):
