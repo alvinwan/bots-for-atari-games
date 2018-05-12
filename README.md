@@ -29,7 +29,7 @@ Download the Tensorflow model for SpaceInvaders, from Tensorpack's A3C-Gym sampl
 
 ```
 mkdir models
-wget http://models.tensorpack.com/OpenAIGym/SpaceInvaders-v0.tfmodel models
+wget http://models.tensorpack.com/OpenAIGym/SpaceInvaders-v0.tfmodel -O models/SpaceInvaders-v0.tfmodel
 ```
 
 Run the corresponding file.
