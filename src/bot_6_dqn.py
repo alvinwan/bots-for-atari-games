@@ -8,7 +8,7 @@ import gym
 import numpy as np
 import random
 import tensorflow as tf
-from step_5_a3c import a3c_model
+from bot_6_a3c import a3c_model
 random.seed(0)  # make results reproducible
 tf.set_random_seed(0)
 
