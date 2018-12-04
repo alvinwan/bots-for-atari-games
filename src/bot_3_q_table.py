@@ -1,5 +1,5 @@
 """
-Step 2 -- Build simple q-learning agent for FrozenLake
+Bot 3 -- Build simple q-learning agent for FrozenLake
 """
 
 from typing import List

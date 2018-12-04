@@ -1,5 +1,5 @@
 """
-Step 3 -- Use Q-learning network to train bot
+Bot 4 -- Use Q-learning network to train bot
 """
 
 from typing import List
@@ -11,7 +11,7 @@ random.seed(0)
 np.random.seed(0)
 tf.set_random_seed(0)
 
-num_episodes = 20000
+num_episodes = 4000
 discount_factor = 0.99
 learning_rate = 0.15
 report_interval = 500
@@ -39,7 +39,6 @@ def print_report(rewards: List, episode: int):
 
 
 def main():
-    global exploration_probability
     env = gym.make('FrozenLake-v0')  # create the game
     env.seed(0)  # make results reproducible
     rewards = []
@@ -103,4 +102,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-

@@ -1,5 +1,5 @@
 """
-Step 4 -- Build least squares q-learning agent for FrozenLake
+Bot 5 -- Build least squares q-learning agent for FrozenLake
 """
 
 from typing import Tuple

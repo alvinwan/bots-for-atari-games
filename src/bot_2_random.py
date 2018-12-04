@@ -1,5 +1,5 @@
 """
-Step 1 -- Make a random, baseline agent for the SpaceInvaders game.
+Bot 2 -- Make a random, baseline agent for the SpaceInvaders game.
 """
 
 import gym

@@ -1,5 +1,5 @@
 """
-Step 5 - Fully featured deep q-learning network.
+Bot 6 - Fully featured deep q-learning network.
 """
 
 import argparse
@@ -53,5 +53,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
