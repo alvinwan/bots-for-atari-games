@@ -35,5 +35,5 @@ wget http://models.tensorpack.com/OpenAIGym/SpaceInvaders-v0.tfmodel -O models/S
 Run the corresponding file.
 
 ```
-python step_5_dqn.py --visual
+python bot_6_dqn.py --visual
 ```
