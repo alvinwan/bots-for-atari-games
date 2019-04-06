@@ -1,49 +1,54 @@
-# Deep Q-Learning Bots for Atari Games
-Deep Reinforcement Learning Bot for Atari Games, written in Tensorflow
+# [How to Build a Bot for Atari with OpenAI Gym](https://www.digitalocean.com/community/tutorials/how-to-build-atari-bot-with-openai-gym)
 
-**Interested in building this bot step-by-step, or curious how it works in more detail? See the article on Digital Ocean ["How to Build a Bot for Atari with OpenAI Gym"](https://www.digitalocean.com/community/tutorials/how-to-build-atari-bot-with-openai-gym)**
+**Want an in-person tutorial with step-by-step walkthroughs and explanations? See the corresponding AirBnb experience for both beginner and experienced coders alike, at ["Build a Dog Filter with Computer Vision"](https://abnb.me/UunXrPyqVO)** ([See the 45+ 5-star reviews](https://www.airbnb.com/users/show/87172280))
 
-In this repository, we explore three different q-learning agents:
+This repository includes all source code for the [tutorial on DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-build-atari-bot-with-openai-gym) with the same title, including:
 - Q-table based agent for FrozenLake
 - Simple neural network q-learning agent for FrozenLake
 - Least squares q-learning agent for FrozenLake
-Each of these agents solve FrozenLake in 5000 episodes or fewer; whereas not in record time or even close to it, the agents are functioning and demonstrate the point.
+- Code to use fully pretrained Deep Q-learning Network (DQN) agent on Space Invaders
 
-We additionally add bells and whistles for a fully pretrained Deep Q-learning Network (DQN) agent on Space Invaders.
+> Each of these agents solve FrozenLake in 5000 episodes or fewer; whereas not in record time or even close to it, the agents are written with minimal tuning
 
-## How it Works
+created by [Alvin Wan](http://alvinwan.com), January 2018
 
-See the below resources for explanations of related concepts:
+![agent](https://user-images.githubusercontent.com/2068077/55676351-857eff80-5888-11e9-8fe6-8acf239f3e50.gif)
 
-- ["Understanding Deep Q-Learning"](http://alvinwan.com/understanding-deep-q-learning)
-- ["Understanding the Bias-Variance Tradeoff"](http://alvinwan.com/understanding-the-bias-variance-tradeoff)
-- ["How to Build a Bot for Atari with OpenAI Gym"](https://www.digitalocean.com/community/tutorials/how-to-build-atari-bot-with-openai-gym)
+# Getting Started
 
-## Installation
+For complete step-by-step instructions, see the [tutorial on DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-build-atari-bot-with-openai-gym). This codebase was developed and tested using `Python 3.6`. If you're familiar with Python, then see the below to skip the tutorial and get started quickly:
 
-If you're familiar with deep learning and would like to use these materials, feel free to follow installation instructions. Otherwise, I would highly recommend checking out the corresponding Digital Ocean article for step-by-step instructions and walkthroughs. 
+> (Optional) [Setup a Python virtual environment](https://www.digitalocean.com/community/tutorials/common-python-tools-using-virtualenv-installing-with-pip-and-managing-packages#a-thorough-virtualenv-how-to) with Python 3.6.
 
-This codebase was developed and tested using `Python 3.5`. Install all pip dependencies.
+1. Navigate to the repository root, and install all Python dependencies.
 
 ```
-pip install gym==0.9.5 gym[atari] tensorflow==1.5.0 tensorpack==0.8.0 numpy==1.14.0 opencv-python==3.3.0.10
+pip install -r requirements.txt
 ```
 
-Navigate to the `src` directory.
+2. Navigate into `src`.
 
-```python
+```
 cd src
 ```
 
-Download the Tensorflow model for SpaceInvaders, from Tensorpack's A3C-Gym sample.
+3. Download the Tensorflow model for SpaceInvaders, from Tensorpack's A3C-Gym sample.
 
 ```
 mkdir models
 wget http://models.tensorpack.com/OpenAIGym/SpaceInvaders-v0.tfmodel -O models/SpaceInvaders-v0.tfmodel
 ```
 
-Run the corresponding file.
+4. Launch the script to see the Space Invaders agent in action.
 
 ```
 python bot_6_dqn.py --visual
 ```
+
+# How it Works
+
+See the below resources for explanations of related concepts:
+
+- ["Understanding Deep Q-Learning"](http://alvinwan.com/understanding-deep-q-learning)
+- ["Understanding the Bias-Variance Tradeoff"](http://alvinwan.com/understanding-the-bias-variance-tradeoff)
+
